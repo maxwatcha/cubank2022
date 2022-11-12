@@ -135,7 +135,7 @@ const Register = () => {
         </label>
         {error && (
             <div>
-              <label>{errorMsg}</label>
+              <label cid='register-error-mes'>{errorMsg}</label>
             </div>
           )}
         {!isPending && <button cid='rc'>Register</button>}

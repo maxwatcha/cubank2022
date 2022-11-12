@@ -13,7 +13,7 @@ exports.register=async (req,res,next)=>{
         })
         if(checkUser)
         {
-            res.status(401).json({success:false,msg:'Account ID already existed'});
+            return res.status(401).json({success:false,msg:'Account ID already existed'});
         }
         //Create user
         const user = await User.create({
@@ -86,7 +86,7 @@ const sendTokenResponse=(user, statusCode, res)=>{
     if(process.env.NODE_ENV==='production'){
         options.secure=true;
     }
-    res.status(statusCode).cookie('token',token,options).json({
+    return res.status(statusCode).cookie('token',token,options).json({
         success: true,
         token,user
     })
@@ -97,7 +97,7 @@ const sendTokenResponse=(user, statusCode, res)=>{
 //@access   Private
 exports.getMe=async(req,res,next)=>{
     const user=await User.findById(req.user.id);
-    res.status(200).json({
+    return res.status(200).json({
         success:true,
         data:user
     });
@@ -112,7 +112,7 @@ exports.logout=async(req,res,next)=>{
         httpOnly:true
     });
 
-    res.status(200).json({
+    return res.status(200).json({
         success:true,
         data:{}
     });

@@ -63,7 +63,7 @@ const Account = () => {
     if (among <= 0) {
       setErrDep(true);
       setIsPending(false);
-      setErrDepMsg("Please put password only number");
+      setErrDepMsg("Please put only number");
     } else {
       await AccountService.deposit(among).then(
         () => {
@@ -88,7 +88,7 @@ const Account = () => {
     if (among <= 0) {
       setErrWit(true);
       setIsPending(false);
-      setErrWitMsg("among incorrect");
+      setErrWitMsg("Please put only number");
     } else {
       if (account.balance < among) {
         setErrWit(true);
@@ -138,7 +138,7 @@ const Account = () => {
     if (among <= 0) {
       setErrTra(true);
       setIsPending(false);
-      setErrTraMsg("among incorrect");
+      setErrTraMsg("Please put only number");
       allCheck = false;
     }
 
@@ -172,12 +172,12 @@ const Account = () => {
     if (among <= 0) {
       setErrBil(true);
       setIsPending(false);
-      setErrBilMsg("among incorrect");
+      setErrBilMsg("Please put only number");
     } else {
       if (account.balance < among) {
-        setErrWit(true);
+        setErrBil(true);
         setIsPending(false);
-        setErrWitMsg("your balance isn't not enough");
+        setErrBilMsg("your balance isn't not enough");
       } else {
         await AccountService.billPayment(billTarget, among).then(
           () => {
@@ -232,7 +232,7 @@ const Account = () => {
             </label>
             {errDep && (
               <div>
-                <label>{errDepMsg}</label>
+                <label cid='deposite-error-mes'>{errDepMsg}</label>
               </div>
             )}
             {!isPending && <button cid='dc'>Confirm</button>}
@@ -260,7 +260,7 @@ const Account = () => {
             </label>
             {errWit && (
               <div>
-                <label>{errWitMsg}</label>
+                <label cid='withdraw-error-mes'>{errWitMsg}</label>
               </div>
             )}
             {!isPending && <button cid='wc'>Confirm</button>}
@@ -304,7 +304,7 @@ const Account = () => {
             </div>
             {errTra && (
               <div>
-                <label>{errTraMsg}</label>
+                <label cid='transfer-error-mes'>{errTraMsg}</label>
               </div>
             )}
             {!isPending && <button cid='tc'>Confirm</button>}
@@ -363,7 +363,7 @@ const Account = () => {
             </div>
             {errBil && (
               <div>
-                <label>{errBilMsg}</label>
+                <label cid='billpayment-error-mes'>{errBilMsg}</label>
               </div>
             )}
             {!isPending && <button cid='bc'>Confirm</button>}

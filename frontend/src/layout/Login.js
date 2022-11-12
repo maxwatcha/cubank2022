@@ -95,7 +95,7 @@ const Login = () => {
           />
           {error && (
             <div>
-              <label color="red">{errorMsg}</label>
+              <label cid='login-error-mes'>{errorMsg}</label>
             </div>
           )}
         </label>
